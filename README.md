@@ -1,10 +1,10 @@
-# 🧭 Maze Escape: AI Challenge
+# Maze Escape: AI Challenge
 
 A dynamic, grid-based stealth escape game built in Python using **Pygame** and **NetworkX**. Navigate an unpredictable maze, outsmart an adaptive AI enemy utilizing distinct behavioral states, and reach the green exit sector to secure victory.
 
 ---
 
-## 🕹️ Game Elements & Visuals
+## Game Elements & Visuals
 
 The play area consists of a 10×10 grid with custom-generated geometry. The interface updates its layout and color themes dynamically to mirror the threat level of the enemy tracking you:
 
@@ -15,7 +15,7 @@ The play area consists of a 10×10 grid with custom-generated geometry. The inte
 
 ---
 
-## 🛠️ Deep Dive: Core Mechanics & AI Architecture
+## Deep Dive: Core Mechanics & AI Architecture
 
 ### 1. Imperfect-Maze Generation
 Rather than creating a perfect maze with exactly one solution, the system uses **Recursive Backtracking** combined with graph theory to construct a spanning tree. It then intentionally adds back **25% of the discarded walls**. This results in loopbacks, wide-open loops, and alternative pathways, allowing both you and the AI to loop around columns and execute tactical escapes.
@@ -29,14 +29,3 @@ The enemy processes the world in real time across three distinct threat states:
     It then moves directly along this path toward you.
 *   **`SEARCH` State (Alert Yellow):** If you break Line of Sight, the enemy rushes to your **last known position** using A*. It actively searches that area before timing out and reverting to its regular Patrol pattern.
 *   **Anti-Stuck Logic:** If path geometry traps the AI or cuts off its pathing loops, an internal `STUCK_THRESHOLD` triggers an emergency fallback mode, forcing it to make random legal moves until its positioning matrix clears up.
-
----
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-Ensure you have Python 3.8+ installed along with the required libraries. Install dependencies via pip:
-
-```bash
-pip install pygame networkx
